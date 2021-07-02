@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api-conversao
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: api-conversao
@@ -26,7 +26,7 @@ spec:
             timeoutSeconds: 1 # quanto tempo espera pela resposta
             successThreshold: 1 # quantos sucessos precisam acontecer pra eu considerar que ta healthy de novo?
             failureThreshold: 1 # quantas falhas pra eu considerar que ta unhealthy e precisa dar restart na aplicação?
-          readinessProbe: # NEW CONFIG
+          readinessProbe:
             httpGet:
               path: /ready
               port: 8080
@@ -34,4 +34,11 @@ spec:
             periodSeconds: 2 # De quanto em quanto vou verificar a saude
             timeoutSeconds: 1 # quanto tempo espera pela resposta
             successThreshold: 1 # quantos sucessos precisam acontecer pra eu considerar que ta healthy de novo?
-            failureThreshold: 1 # quantas falhas pra eu considerar que ta unhealthy e precisa dar restart na aplicação?
+            failureThreshold: 1
+          resources:  # NEW CONFIG
+            requests:
+              cpu: "200m"
+              memory: "32Mi"
+            limits:
+              cpu: "400m"
+              memory: "64Mi"

@@ -9,4 +9,4 @@ spec:
     - port: 80 # porta do pod
       targetPort: 8080 # porta do container
       nodePort: 30000 # porta do serviço
-  type: NodePort
+  type: LoadBalancer
