@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api-conversao
 spec:
-  # replicas: 5 
+  replicas: 5
   selector:
     matchLabels:
       app: api-conversao
@@ -21,8 +21,8 @@ spec:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 3 # Para começar a bater no health
-            periodSeconds: 2 # De quanto em quanto vou verificar a saude
+            initialDelaySeconds: 0 # Para começar a bater no health
+            periodSeconds: 1 # De quanto em quanto vou verificar a saude
             timeoutSeconds: 1 # quanto tempo espera pela resposta
             successThreshold: 1 # quantos sucessos precisam acontecer pra eu considerar que ta healthy de novo?
             failureThreshold: 1 # quantas falhas pra eu considerar que ta unhealthy e precisa dar restart na aplicação?
