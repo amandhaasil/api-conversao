@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api-conversao
 spec:
-  replicas: 5
+  # replicas: 5 
   selector:
     matchLabels:
       app: api-conversao
@@ -17,4 +17,8 @@ spec:
           image: amandhaasil/api-conversao:v1
           ports:
             - containerPort: 8080
+          livenessProbe: # NEW CONFIG -> self healing 
+            httpGet:
+              path: /health
+              port: 8080
 
